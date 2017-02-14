@@ -50,6 +50,7 @@ namespace ToMakeATriangle
         }
         static void Main(string[] args)
         {
+            Random Gen = new Random();
             Point a = new Point(1,1);
             Point b = new Point(1, 6);
             Point c = new Point(6, 1);
@@ -64,36 +65,69 @@ namespace ToMakeATriangle
             Triangle[] Mastriagle = new Triangle[10];
             for (int i = 0; i < Mastriagle.Length; i++)
             {
-                Mastriagle[i] = new Triangle(a,b,c);
+                double randomx = Gen.Next(0, 20);
+                double randomy = Gen.Next(0, 20);
+                double randomx1 = Gen.Next(0, 20);
+                double randomy1 = Gen.Next(0, 20);
+                double randomx2 = Gen.Next(0, 20);
+                double randomy2 = Gen.Next(0, 20);
+                Point amas = new Point(randomx, randomy);
+                Point bmas = new Point(randomx1, randomy1);
+                Point cmas = new Point(randomx2, randomy2);
+                Mastriagle[i] = new Triangle(amas,bmas,cmas);
                 
-            }
-            
-            int countoftriagle = 0;
+            } 
             for (int i = 0; i < Mastriagle.Length; i++)
             {
-                if (triangle.Possible())
+                if (Mastriagle[i].Possible())
                 {
                     Console.WriteLine("По заданным координатам {0} треугольник возможен", i);
-                    triangle.PrintInfoAboutTriagle();
-                    countoftriagle++;
+                    Mastriagle[i].PrintInfoAboutTriagle();
                     Console.WriteLine();
                 }
                 else Console.WriteLine("По заданным координатам треугольник невозможен.");
             }
-            double Sumofareaofmas = 0;
+            double sumofareaofmas = 0;
+            double countofisoscelestriagle = 0;
+            double midarea = 0;
             for (int i = 0; i < Mastriagle.Length; i++)
             {
-                if (Mastriagle[i].Possible() && Mastriagle[i].Isosceles()) Sumofareaofmas += Mastriagle[i].Area();
+                if (Mastriagle[i].Possible() && Mastriagle[i].Isosceles())
+                {
+                    sumofareaofmas += Mastriagle[i].Area();
+                    countofisoscelestriagle++;
+                }
             }
-            double Midarea = Sumofareaofmas / countoftriagle;
-            Console.WriteLine("Средняя площадь равна {0}",Midarea);
-            double Sumofperimeterofmas = 0;
+            if (countofisoscelestriagle == 0)
+            {
+                Console.WriteLine("К сожалению,равнобедренных треугольников в массиве нет,поэтому их среднюю площадь не вычислить");
+            }
+            else
+            {
+               midarea = sumofareaofmas / countofisoscelestriagle;
+               Console.WriteLine("Средняя площадь всех равнобедренных треугольников равна {0}", midarea);
+            }
+            double countofrighttriagle = 0;
+            double sumofperimeterofmas = 0;
+            double midperimeter = 0;
             for (int i = 0; i < Mastriagle.Length; i++)
             {
-                if (Mastriagle[i].Right()) Sumofperimeterofmas += Mastriagle[i].Perimeter();
+                if (Mastriagle[i].Possible() && Mastriagle[i].Right())
+                {
+                    sumofperimeterofmas += Mastriagle[i].Perimeter();
+                    countofrighttriagle++;
+                }
             }
-            double MidPerimeter = Sumofperimeterofmas / countoftriagle;
-            Console.WriteLine("Средний периметр равен {0}", MidPerimeter);
+            if(countofrighttriagle == 0)
+            {
+               Console.WriteLine("К сожалению,прямоугольных треугольников в массиве нет,поэтому их средний периметр не вычислить");
+            }
+            else
+            {
+                midperimeter = sumofperimeterofmas / countofrighttriagle;
+                Console.WriteLine("Средний периметр всех прямоугольных треугольников равен {0}", midperimeter);
+            }
+            
             Console.ReadKey();
         }
     }
