@@ -8,8 +8,8 @@ namespace ToMakeATriangle
 {
     class Edge
     {
-        Point x1;
-        Point x2;
+        Point x1 { get; set; }
+        Point x2 { get; set; }
         public double length;
         public Edge(Point x1, Point x2)
         {

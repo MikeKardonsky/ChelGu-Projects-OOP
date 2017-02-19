@@ -8,8 +8,12 @@ namespace ToMakeATriangle
 {
     class Triangle
     {
-        Point a, b, c;
-        Edge AB, BC, AC;
+        Point a { get; set; }
+        Point b { get; set; }
+        Point c { get; set; }
+        Edge AB { get; set; }
+        Edge BC { get; set; }
+        Edge AC { get; set; }
         public Triangle(Point a, Point b, Point c)
         {
             AB = new Edge(a, b);
