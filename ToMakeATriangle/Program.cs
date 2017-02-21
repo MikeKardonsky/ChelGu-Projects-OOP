@@ -11,9 +11,9 @@ namespace ToMakeATriangle
         Point a { get; set; }
         Point b { get; set; }
         Point c { get; set; }
-        Edge AB { get; set; }
-        Edge BC { get; set; }
-        Edge AC { get; set; }
+        Edge AB { get; }
+        Edge BC { get; }
+        Edge AC { get; }
         public Triangle(Point a, Point b, Point c)
         {
             AB = new Edge(a, b);
@@ -46,11 +46,24 @@ namespace ToMakeATriangle
             else return false;
         }
         public void PrintInfoAboutTriagle()
-        { 
+        {
+            Console.WriteLine("Сторона АВ равна:{0}", AB.length);
+            Console.WriteLine("Сторона АС равна:{0}", AC.length);
+            Console.WriteLine("Сторона ВС равна:{0}", BC.length);
             Console.WriteLine("Периметр треугольника ABC:{0}", Perimeter());
             Console.WriteLine("Площадь треугольника ABC:{0}", Area());
             Console.WriteLine("Треугольник является прямоугольным?:{0}", Right());
             Console.WriteLine("Треугольник является равнобедренным?:{0}", Isosceles());
+        }
+        static void PrintInfoAboutTriagle(Triangle triangle)
+        {
+            Console.WriteLine("Сторона АВ равна:{0}", triangle.AB.length);
+            Console.WriteLine("Сторона АС равна:{0}", triangle.AC.length);
+            Console.WriteLine("Сторона ВС равна:{0}", triangle.BC.length);
+            Console.WriteLine("Периметр треугольника ABC:{0}", triangle.Perimeter());
+            Console.WriteLine("Площадь треугольника ABC:{0}", triangle.Area());
+            Console.WriteLine("Треугольник является прямоугольным?:{0}", triangle.Right());
+            Console.WriteLine("Треугольник является равнобедренным?:{0}", triangle.Isosceles());
         }
         static void Main(string[] args)
         {
@@ -62,7 +75,7 @@ namespace ToMakeATriangle
             if (triangle.Possible())
             {
                 Console.WriteLine("По заданным координатам треугольник возможен");
-                triangle.PrintInfoAboutTriagle();
+                PrintInfoAboutTriagle(triangle);
             }
             else Console.WriteLine("По заданным координатам треугольник невозможен.");
             Console.WriteLine();
@@ -86,7 +99,7 @@ namespace ToMakeATriangle
                 if (Mastriagle[i].Possible())
                 {
                     Console.WriteLine("По заданным координатам {0} треугольник возможен", i);
-                    Mastriagle[i].PrintInfoAboutTriagle();
+                    PrintInfoAboutTriagle(Mastriagle[i]);
                     Console.WriteLine();
                 }
                 else Console.WriteLine("По заданным координатам треугольник невозможен.");
