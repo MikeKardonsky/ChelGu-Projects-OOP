@@ -45,16 +45,6 @@ namespace ToMakeATriangle
                       || (AC.length == Math.Sqrt(Math.Pow(AB.length, 2) + Math.Pow(BC.length, 2)))) return true;
             else return false;
         }
-        public void PrintInfoAboutTriagle()
-        {
-            Console.WriteLine("Сторона АВ равна:{0}", AB.length);
-            Console.WriteLine("Сторона АС равна:{0}", AC.length);
-            Console.WriteLine("Сторона ВС равна:{0}", BC.length);
-            Console.WriteLine("Периметр треугольника ABC:{0}", Perimeter());
-            Console.WriteLine("Площадь треугольника ABC:{0}", Area());
-            Console.WriteLine("Треугольник является прямоугольным?:{0}", Right());
-            Console.WriteLine("Треугольник является равнобедренным?:{0}", Isosceles());
-        }
         static void PrintInfoAboutTriagle(Triangle triangle)
         {
             Console.WriteLine("Сторона АВ равна:{0}", triangle.AB.length);
