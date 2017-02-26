@@ -55,6 +55,19 @@ namespace ToMakeATriangle
             Console.WriteLine("Треугольник является прямоугольным?:{0}", triangle.Right());
             Console.WriteLine("Треугольник является равнобедренным?:{0}", triangle.Isosceles());
         }
+        static void PrintInfoAboutPolygon(Polygon polygon)
+        {
+            for (int i = 0; i < polygon.pointmas.Length; i++)
+            {
+                Console.WriteLine("Точка номер {0} имеет координаты x:{1} и у:{2}", i, polygon.pointmas[i].x, polygon.pointmas[i].y);
+            }
+            for (int i = 0; i < polygon.masedge.Length; i++)
+            {
+                Console.WriteLine("Сторона {0} равна {1}", i, polygon.masedge[i].length);
+            }
+            Console.WriteLine("Периметр многоугольника:{0}", polygon.Perimeter());
+            Console.WriteLine("Площадь многоугольника:{0}", polygon.Area());
+        }
         static void Main(string[] args)
         {
             Random Gen = new Random();
@@ -134,7 +147,16 @@ namespace ToMakeATriangle
                 midperimeter = sumofperimeterofmas / countofrighttriagle;
                 Console.WriteLine("Средний периметр всех прямоугольных треугольников равен {0}", midperimeter);
             }
+            int size = 5;
+            Point[] pointmas = new Point[size];
+            pointmas[0] = new Point(3, 1);
+            pointmas[1] = new Point(2, 3.8284271247461903);
+            pointmas[2] = new Point(4.5, 5.4867395199238902245574663683353);
+            pointmas[3] = new Point(7, 3.8284271247461903);
+            pointmas[4] = new Point(6, 1);
             
+            Polygon polygon = new Polygon(size,pointmas);
+            PrintInfoAboutPolygon(polygon);
             Console.ReadKey();
         }
     }
