@@ -15,18 +15,27 @@ namespace Fifteen
             Game game = new Game(mas);
             if (game.CorrectArray(mas) && game.CorrectIntSize(mas.Length))
             {
-               // Console.WriteLine("Создаю игровое поле!");
+               Console.WriteLine("Создаю игровое поле!По следующему массиву:");
                for(int i = 0;i < mas.Length;i++)
                 {
-                    Console.WriteLine(mas[i]);
+                    Console.Write(mas[i] + " ");
                 }
             }
             else throw new ArgumentException("Значения в данном массиве некорректны или размер поля с данными аргументами не может существовать");
-            if (game.GetLocation(5) != null)
-            {
-                Console.WriteLine("Позиция числа 5:");
+            Console.WriteLine();
+            Print.PrintInfo(game.Numbers);
+            int pyatnashka = 5;
+            if (game.GetLocation(pyatnashka) != null)
+            {               
+                Console.WriteLine("Позиция числа 5:x = {0},y = {1}" ,game.GetLocation(5).x,game.GetLocation(5).y);             
             }
             else throw new ArgumentException("Данное число не удалось найти");
+            int pyatnashka1 = 8;
+            if (game.ShiftOrImpossible(pyatnashka1))
+            {
+                Print.PrintInfo(game.Numbers);
+            }
+            else throw new ArgumentException("Данное число не удалось найти или невозможно поменять местами с нулём");
             Console.ReadLine();
         }
     }

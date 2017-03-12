@@ -10,7 +10,7 @@ namespace Fifteen
     {
         public static void PrintInfo(int[,] array)
         {
-            Console.WriteLine("Игровое поле");
+            Console.WriteLine("Игровое поле:");
             for (int i = 0; i < Math.Sqrt(array.Length); i++)
             {
                 for (int j = 0; j < Math.Sqrt(array.Length); j++)

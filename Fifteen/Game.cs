@@ -17,7 +17,7 @@ namespace Fifteen
             Side = (int)Math.Sqrt(mas.Length);
             ToMakeAField(mas);
         }        
-        protected int[,] ToMakeAField(int [] mas)
+        private int[,] ToMakeAField(int [] mas)
         {
             int count = 0;
             Numbers = new int[Side, Side];
@@ -41,21 +41,46 @@ namespace Fifteen
             }
             return Numbers;
         }
-        public int[] GetLocation(int value)
+        public Pyatnashka GetLocation(int value)
         {
-            int[] mas = null;
+            Pyatnashka pyatnashka = null;
             if ((value < Math.Pow(Side, 2)) && (value >= 0))
-            { 
+            {
                 for (int i = 0; i < Side; i++)
                 {
                     for (int j = 0; j < Side; j++)
                     {
                         if (Numbers[i, j] == value)
-                            mas = new int[]{ i, j };
+                            pyatnashka = new Pyatnashka(i, j);      
                     }
                 }                
             }
-            return mas;
+            return pyatnashka;
+        }
+        public bool ShiftOrImpossible(int value)
+        {
+            int firsttemp = 0;
+            int secondtemp = 0;
+            for (int i = 0; i < Side; i++)
+            {
+                for (int j = 0; j < Side; j++)
+                {
+                    if (Numbers[i, j] == value)
+                    {
+                        firsttemp = i;
+                        secondtemp = j;
+                    }
+                }
+            }
+            if (Math.Abs(firsttemp - xOfNull) + Math.Abs(secondtemp - yOfNull) == 1)
+            {
+                Numbers[xOfNull, yOfNull] = Numbers[firsttemp, secondtemp];
+                xOfNull = firsttemp;
+                yOfNull = secondtemp;
+                Numbers[xOfNull, yOfNull] = 0;
+                return true;
+            }
+            else return false;
         }
         public bool CorrectArray(int[] mas)
         {
@@ -72,6 +97,5 @@ namespace Fifteen
         {
             return ((Math.Sqrt(size) % 1) == 0);
         }
-
     }
 }
